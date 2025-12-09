@@ -130,4 +130,7 @@ def delete_warehouse(warehouse_id):
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Debug mode should only be enabled in development
+    # In production, use a proper WSGI server like Gunicorn
+    debug_mode = os.environ.get('FLASK_DEBUG', 'False').lower() == 'true'
+    app.run(debug=debug_mode)
