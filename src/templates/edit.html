@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Muokkaa varastoa - Varastosovellus{% endblock %}
+
+{% block content %}
+<h1>Muokkaa varastoa</h1>
+
+<form method="POST">
+    <div class="form-group">
+        <label for="name">Varaston nimi:</label>
+        <input type="text" id="name" name="name" value="{{ warehouse.name }}" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="tilavuus">Tilavuus:</label>
+        <input type="number" id="tilavuus" name="tilavuus" step="0.01" min="0" 
+               value="{{ warehouse.varasto.tilavuus }}" required>
+        <small style="color: #666; display: block; margin-top: 5px;">
+            Nykyinen saldo: {{ warehouse.varasto.saldo }}. Jos uusi tilavuus on pienempi kuin saldo, saldo pienenee.
+        </small>
+    </div>
+    
+    <button type="submit" class="btn">Tallenna muutokset</button>
+    <a href="{{ url_for('index') }}" class="btn btn-secondary">Peruuta</a>
+</form>
+{% endblock %}
